@@ -5,117 +5,628 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Versorgungskonzept Gesundheit</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f7fbff;
       color: #1e293b;
+      line-height: 1.6;
     }
+
     header {
-      background: white;
-      padding: 20px 40px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
-    .hero {
-      padding: 80px 20px;
-      text-align: center;
-      background: linear-gradient(135deg,#2563eb,#0ea5e9);
-      color: white;
-    }
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-    .section {
-      max-width: 1100px;
+
+    .nav {
+      max-width: 1150px;
       margin: auto;
-      padding: 60px 20px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       gap: 20px;
     }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+      color: #0f172a;
     }
-    .cta {
+
+    .nav a {
+      text-decoration: none;
+      color: #334155;
+      font-size: 15px;
+      margin-left: 16px;
+    }
+
+    .nav a.button {
       background: #2563eb;
       color: white;
-      padding: 60px 20px;
-      text-align: center;
+      padding: 10px 16px;
+      border-radius: 10px;
+      display: inline-block;
     }
+
+    .hero {
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      color: white;
+      padding: 90px 20px 80px;
+    }
+
+    .hero-inner {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 52px;
+      line-height: 1.1;
+      margin: 0 0 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons a {
+      text-decoration: none;
+      display: inline-block;
+      margin-right: 12px;
+      margin-bottom: 12px;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: bold;
+    }
+
+    .btn-white {
+      background: white;
+      color: #2563eb;
+    }
+
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.6);
+      color: white;
+    }
+
+    .hero-card {
+      background: white;
+      color: #1e293b;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+      color: #0f172a;
+    }
+
+    .highlight-box {
+      background: #eff6ff;
+      border-radius: 16px;
+      padding: 16px;
+      margin-top: 18px;
+    }
+
+    .section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 70px 20px;
+    }
+
+    .section h2 {
+      font-size: 38px;
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #0f172a;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      color: #475569;
+      font-size: 18px;
+      margin-bottom: 35px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      padding: 26px;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #0f172a;
+    }
+
+    .light {
+      background: #f8fafc;
+    }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    ul.checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul.checklist li {
+      background: white;
+      margin-bottom: 14px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+    }
+
+    .pricing-table {
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid #dbeafe;
+      background: white;
+    }
+
+    .pricing-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 15px 18px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .pricing-row.header {
+      background: #2563eb;
+      color: white;
+      font-weight: bold;
+    }
+
+    .pricing-row:last-child {
+      border-bottom: none;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
+    .step {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+    }
+
+    .step-number {
+      color: #2563eb;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .faq-item {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      margin-bottom: 14px;
+      padding: 20px;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .contact-section {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+    }
+
+    .contact-box {
+      background: #0f172a;
+      color: white;
+      border-radius: 22px;
+      padding: 30px;
+    }
+
+    .contact-box h2 {
+      color: white;
+    }
+
+    .contact-box p,
+    .contact-box li {
+      color: #dbeafe;
+    }
+
+    .form-box {
+      background: white;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+      border: 1px solid #e2e8f0;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
     input, textarea {
       width: 100%;
       padding: 14px;
-      margin-top: 10px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      font-size: 15px;
     }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .checkbox {
+      font-size: 14px;
+      color: #475569;
+      background: #f8fafc;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
     button {
       background: #2563eb;
       color: white;
       border: none;
-      padding: 14px 30px;
-      border-radius: 10px;
-      margin-top: 15px;
+      padding: 15px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .success {
+      display: none;
+      background: #ecfdf5;
+      border: 1px solid #86efac;
+      color: #166534;
+      padding: 16px;
+      border-radius: 14px;
+      margin-top: 16px;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid #e2e8f0;
+      padding: 24px 20px;
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner,
+      .two-columns,
+      .contact-section,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .nav a {
+        margin-left: 0;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <strong>Versorgungskonzept Gesundheit</strong>
+  <div class="nav">
+    <div class="logo">Versorgungskonzept Gesundheit</div>
+    <div class="nav-links">
+      <a href="#vorteile">Vorteile</a>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontakt" class="button">Kontakt</a>
+    </div>
+  </div>
 </header>
 
 <section class="hero">
-  <h1>Deine Gesundheit in guten Händen</h1>
-  <p>Exklusiv für Gewerkschaftsmitglieder und ihre Familienangehörigen</p>
-</section>
+  <div class="hero-inner">
+    <div>
+      <div class="badge">Ohne Gesundheitsprüfung • Für Gewerkschaftsmitglieder und Familienangehörige</div>
+      <h1>Deine Gesundheit in guten Händen</h1>
+      <p>
+        Das Versorgungskonzept Gesundheit unterstützt mit starken Serviceleistungen rund um
+        Gesundheit, Facharzttermine, digitale Arztgespräche und finanzieller Unterstützung
+        bei längerer Krankheit.
+      </p>
+      <div class="hero-buttons">
+        <a href="#kontakt" class="btn-white">Jetzt Kontaktwunsch senden</a>
+        <a href="#leistungen" class="btn-outline">Leistungen ansehen</a>
+      </div>
+    </div>
 
-<section class="section">
-  <h2>Deine Vorteile</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>Gesundheitsberatung 24/7</h3>
-      <p>Persönliche Beratung zu Gesundheit, Vorsorge und Pflege.</p>
-    </div>
-    <div class="card">
-      <h3>Facharztterminservice</h3>
-      <p>Schnelle Unterstützung bei Facharztterminen.</p>
-    </div>
-    <div class="card">
-      <h3>Digitaler Arztbesuch</h3>
-      <p>Ärztliche Beratung per App – rund um die Uhr.</p>
-    </div>
-    <div class="card">
-      <h3>Finanzielle Unterstützung</h3>
-      <p>Monatliche Unterstützung bei längerer Krankheit.</p>
+    <div class="hero-card">
+      <h3>Schon ab 1,20 € monatlich</h3>
+      <p>
+        Attraktive Leistungen für Mitglieder und ihre Familienangehörigen –
+        übersichtlich erklärt und modern aufbereitet.
+      </p>
+      <div class="highlight-box">
+        <strong>Im Krankheitsfall möglich:</strong><br>
+        nach 6 Monaten 300 € monatlich<br>
+        bei mehr als 12 Monaten 600 € monatlich
+      </div>
+      <div class="highlight-box">
+        <strong>Zusätzliche Vorteile:</strong><br>
+        Gesundheitsberatung, Facharztterminservice, Arztbesuch per App
+      </div>
     </div>
   </div>
 </section>
 
-<section class="cta">
-  <h2>Jetzt Kontakt aufnehmen</h2>
-  <p>Unverbindlich beraten lassen</p>
+<section class="section" id="vorteile">
+  <h2>Die wichtigsten Vorteile auf einen Blick</h2>
+  <p class="section-intro">
+    Diese Website ist so aufgebaut, dass Besucher schnell verstehen, welchen Nutzen
+    das Versorgungskonzept Gesundheit bietet und warum sich eine Kontaktanfrage lohnt.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Gesundheitsberatung 24/7</h3>
+      <p>Persönliche Beratung zu Gesundheit, Pflege, Vorsorge, Krankheiten und Behandlungen – rund um die Uhr.</p>
+    </div>
+    <div class="card">
+      <h3>Facharztterminservice</h3>
+      <p>Unterstützung bei der (Fach-)Arztsuche und Hilfe bei der Terminvermittlung.</p>
+    </div>
+    <div class="card">
+      <h3>Digitaler Arztbesuch per App</h3>
+      <p>Ärztliche Beratung per App, inklusive hoher Flexibilität und einfacher Nutzung.</p>
+    </div>
+    <div class="card">
+      <h3>Finanzielle Unterstützung</h3>
+      <p>Monatliche Unterstützung bei längerer Krankheit zur möglichen Reduzierung von Einkommenslücken.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section light" id="leistungen">
+  <div class="two-columns">
+    <div>
+      <h2>Leistungen verständlich erklärt</h2>
+      <p class="section-intro">
+        Die Seite bündelt die wichtigsten Informationen klar, ruhig und vertrauenswürdig,
+        damit Interessenten schnell Orientierung bekommen.
+      </p>
+
+      <ul class="checklist">
+        <li>Beratung zu Krankheiten, Untersuchungen und Behandlungen</li>
+        <li>Unterstützung bei Facharzt- und Arztsuche</li>
+        <li>Informationen zu Arzneimitteln, Impfungen und Vorsorge</li>
+        <li>Pflege- und Präventionsberatung</li>
+        <li>Digitale Arztgespräche ohne Wartezimmer</li>
+        <li>Familienangehörige können einbezogen werden</li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Beitragsübersicht</h2>
+      <p class="section-intro">
+        Eine einfache Preisübersicht hilft Besuchern, das Angebot schnell einzuordnen.
+      </p>
+
+      <div class="pricing-table">
+        <div class="pricing-row header">
+          <div>Altersstufe</div>
+          <div>Monatlicher Beitrag</div>
+        </div>
+        <div class="pricing-row">
+          <div>16 – 25 Jahre</div>
+          <div>1,20 €</div>
+        </div>
+        <div class="pricing-row">
+          <div>26 – 35 Jahre</div>
+          <div>2,00 €</div>
+        </div>
+        <div class="pricing-row">
+          <div>36 – 45 Jahre</div>
+          <div>3,10 €</div>
+        </div>
+        <div class="pricing-row">
+          <div>46 – 55 Jahre</div>
+          <div>5,20 €</div>
+        </div>
+        <div class="pricing-row">
+          <div>56 – 70 Jahre</div>
+          <div>9,30 €</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="section">
-  <form>
-    <input type="text" placeholder="Vorname">
-    <input type="text" placeholder="Nachname">
-    <input type="email" placeholder="E-Mail">
-    <textarea rows="5" placeholder="Deine Nachricht"></textarea>
-    <button type="button">Anfrage senden</button>
-  </form>
+  <h2>So funktioniert die Seite</h2>
+  <p class="section-intro">
+    Die Struktur ist bewusst einfach und wirksam aufgebaut: informieren, Vertrauen schaffen
+    und dann zur Kontaktanfrage führen.
+  </p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-number">01</div>
+      <h3>Informieren</h3>
+      <p>Besucher verstehen schnell, worum es geht und welche Vorteile das Angebot bietet.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">02</div>
+      <h3>Vertrauen aufbauen</h3>
+      <p>Leistungen, Preisbeispiele und häufige Fragen schaffen Orientierung und Sicherheit.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">03</div>
+      <h3>Kontaktwunsch senden</h3>
+      <p>Über das Formular kann direkt eine unverbindliche Anfrage gestellt werden.</p>
+    </div>
+  </div>
 </section>
+
+<section class="section light" id="faq">
+  <h2>Häufige Fragen</h2>
+  <p class="section-intro">
+    Diese Antworten geben einen schnellen Überblick und helfen, Unsicherheiten abzubauen.
+  </p>
+
+  <div class="faq-item">
+    <h3>Für wen ist das Versorgungskonzept Gesundheit gedacht?</h3>
+    <p>Für Gewerkschaftsmitglieder und ihre Familienangehörigen.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Ist eine Gesundheitsprüfung notwendig?</h3>
+    <p>Nein, das Angebot wird hier ohne Gesundheitsprüfung dargestellt.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Welche Leistungen stehen im Mittelpunkt?</h3>
+    <p>Gesundheitsberatung, Facharztterminservice, digitaler Arztbesuch per App und finanzielle Unterstützung im Krankheitsfall.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Wie nehme ich Kontakt auf?</h3>
+    <p>Über das Formular weiter unten auf dieser Seite. Für eine spätere Live-Version kann zusätzlich eine echte Terminbuchung ergänzt werden.</p>
+  </div>
+</section>
+
+<section class="section" id="kontakt">
+  <div class="contact-section">
+    <div class="contact-box">
+      <h2>Jetzt unverbindlich Kontakt aufnehmen</h2>
+      <p>
+        Diese Website ist darauf ausgerichtet, Interesse in konkrete Anfragen umzuwandeln.
+        Trage deine Daten ein und hinterlasse deinen Kontaktwunsch.
+      </p>
+      <p><strong>Telefon:</strong><br>+49 (0) 6851 - 939820</p>
+      <p><strong>E-Mail:</strong><br>kt@pd-business.de</p>
+      <p>
+        Später kann hier zusätzlich noch eine echte Terminbuchung eingebaut werden.
+      </p>
+    </div>
+
+    <div class="form-box">
+      <h2>Kontaktwunsch hinterlassen</h2>
+      <p class="section-intro" style="margin-bottom: 20px;">
+        In dieser Testversion erscheint nach dem Absenden eine Bestätigung auf der Seite.
+      </p>
+
+      <form onsubmit="showSuccess(event)">
+        <div class="form-row">
+          <input type="text" placeholder="Vorname" required>
+          <input type="text" placeholder="Nachname" required>
+        </div>
+        <input type="email" placeholder="E-Mail-Adresse" required>
+        <input type="text" placeholder="Telefonnummer">
+        <textarea placeholder="Wobei können wir helfen?" required></textarea>
+
+        <div class="checkbox">
+          <input type="checkbox" required> Ich habe die Datenschutzhinweise gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.
+        </div>
+
+        <button type="submit">Anfrage absenden</button>
+      </form>
+
+      <div class="success" id="successMessage">
+        Vielen Dank. Deine Anfrage wurde in dieser Testversion gespeichert dargestellt.
+        Für die echte Live-Version kann das Formular später mit E-Mail oder einem Formular-Dienst verbunden werden.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Versorgungskonzept Gesundheit – Test-Website
+</footer>
+
+<script>
+  function showSuccess(event) {
+    event.preventDefault();
+    document.getElementById("successMessage").style.display = "block";
+    window.location.hash = "kontakt";
+  }
+</script>
 
 </body>
 </html>
